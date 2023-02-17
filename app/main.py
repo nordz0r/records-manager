@@ -91,7 +91,6 @@ def delete_audio(user_folder, filename):
         corpus_content_deleted = ''
         for line in lines:
             if line.strip() and not line.startswith(filename):
-
                 corpus_content += line
             else:
                 corpus_content_deleted = line.strip().split(';')[1] + '\n'
@@ -106,8 +105,6 @@ def delete_audio(user_folder, filename):
         with open(os.path.join('home', user_folder, 'corpus.txt'), 'r', encoding='utf-8') as f:
             for line in f:
                 semicolon_count += line.count(';')
-
-        print(semicolon_count)
 
         # Записываем количество точек с запятой в файл counter.txt
         with open(os.path.join('home', user_folder, 'counter.txt'), 'w') as f:

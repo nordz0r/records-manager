@@ -134,3 +134,6 @@ dmypy.json
 # App
 app/home
 app/extensions.conf
+/logs.sh
+/restart.sh
+/stop.sh
