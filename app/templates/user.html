@@ -26,7 +26,7 @@
                 <td id="td">{{ record.get('name') }}</td>
                 {% if record.get('filename') %}
                     <td id="td"><audio controls><source src="./{{ user.get('folder') }}/records/{{ record.get('filename') }}" type="audio/wav"></audio></td>
-                    <td id="td"><button type="button" class="btn btn-danger btn-sm" onclick="deleteAudio('{{ record['filename'] }}')">Delete</button></td>
+                    <td id="td"><button type="button" class="btn btn-danger btn-sm" onclick="deleteAudio('{{ record['filename'] }}')">Удалить</button></td>
                 {% else %}
                     <td id="td"></td>
                     <td id="td"></td>

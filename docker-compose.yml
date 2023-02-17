@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  records-manager:
+    image: nordz0r/records-manager:latest
+    container_name: records-manager
+    volumes:
+      - /etc/asterisk/local/extensions.conf:extensions.conf
+      - /home:home
+    ports:
+      - "80:8080"
+    restart: always
