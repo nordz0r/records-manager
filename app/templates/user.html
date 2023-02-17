@@ -7,10 +7,10 @@
 {% block body %}
 
     <div class="container">
-       <h1 id="h1" class="display-1 text-center">{{ user['fio'] }}</h1>
+       <h1 id="h1" class="display-4 text-center">{{ user['fio'] }}</h1>
     </div>
     <div class="container">
-      <table class="table"><caption>Записанный корпус от {{ user['fio'] }}, папка с записями: /home/{{ user['folder'] }}/records</caption>
+      <table class="table"><caption>Корпус для пользователя: {{ user['fio'] }}, папка с записями: /home/{{ user['folder'] }}/records</caption>
         <thead>
           <tr class="head">
             <th id="th" scope="col">№</th>
