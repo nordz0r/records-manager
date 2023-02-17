@@ -1,0 +1,34 @@
+{% extends 'header.html' %}
+
+{% block title %}
+Countries
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+   <h1 id="h1" class="display-1 text-center">Список пользователей</h1>
+</div>
+<div class="container">
+  <table class="table"><caption>Powered by NorD for BSS</caption>
+    <thead>
+      <tr class="head">
+        <th id="th" scope="col">Пользователь</th>
+        <th id="th" scope="col">Номер телефона</th>
+        <th id="th" scope="col">Записи</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+            <td id="td">{{ user.get('fio') }}</td>
+            <td id="td">{{ user.get('telephone') }}</td>
+            <td id="td"><a id="{{ user.get('folder') }}" href="user/{{ user.get('folder') }}">{{ user.get('counter') }}</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+

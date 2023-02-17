@@ -1,0 +1,57 @@
+{% extends 'header.html' %}
+
+{% block title %}
+Записи: {{ user['fio'] }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+       <h1 id="h1" class="display-1 text-center">{{ user['fio'] }}</h1>
+    </div>
+    <div class="container">
+      <table class="table"><caption>Записанный корпус от {{ user['fio'] }}, папка с записями: /home/{{ user['folder'] }}/records</caption>
+        <thead>
+          <tr class="head">
+            <th id="th" scope="col">№</th>
+            <th id="th" scope="col">Корпус</th>
+            <th id="th" scope="col">Запись</th>
+            <th id="th" scope="col">Удалить</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in recordings %}
+            <tr>
+                <td id="td">{{ record.get('id') }}</td>
+                <td id="td">{{ record.get('name') }}</td>
+                {% if record.get('filename') %}
+                    <td id="td"><audio controls><source src="./{{ user.get('folder') }}/records/{{ record.get('filename') }}" type="audio/wav"></audio></td>
+                    <td id="td"><button type="button" class="btn btn-danger btn-sm" onclick="deleteAudio('{{ record['filename'] }}')">Delete</button></td>
+                {% else %}
+                    <td id="td"></td>
+                    <td id="td"></td>
+                {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    <script>
+      function deleteAudio(filename) {
+        if (confirm('Вы действительно хотите удалить эту запись?')) {
+          fetch('/delete-audio/' + '{{ user['folder'] }}' + '/' + encodeURIComponent(filename))
+            .then(response => {
+              if (response.ok) {
+                window.location.reload();
+              } else {
+                alert('Произошла ошибка при удалении файла');
+              }
+            })
+            .catch(error => {
+              alert('Произошла ошибка при удалении файла');
+            });
+        }
+      }
+    </script>
+    </div>
+
+{% endblock %}
