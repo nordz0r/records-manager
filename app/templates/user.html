@@ -41,7 +41,7 @@
           fetch('/delete-audio/' + '{{ user['folder'] }}' + '/' + encodeURIComponent(filename))
             .then(response => {
               if (response.ok) {
-                window.location.reload();
+                refreshTable();
               } else {
                 alert('Произошла ошибка при удалении файла');
               }
@@ -50,6 +50,17 @@
               alert('Произошла ошибка при удалении файла');
             });
         }
+      }
+
+      function refreshTable() {
+        fetch(window.location.href, { cache: 'no-store' })
+          .then(response => response.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newTable = doc.querySelector('.table');
+            document.querySelector('.table').replaceWith(newTable);
+          });
       }
     </script>
     </div>

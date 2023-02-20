@@ -28,6 +28,18 @@ Records Manager
       {% endfor %}
     </tbody>
   </table>
+  <script>
+  function refreshTable() {
+    fetch(window.location.href, {cache: 'no-store'})
+      .then(response => response.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newTable = doc.querySelector('.table');
+        document.querySelector('.table').replaceWith(newTable);
+      });
+  }
+  </script>
 </div>
 
 {% endblock %}
