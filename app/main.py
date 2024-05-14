@@ -99,8 +99,10 @@ def delete_audio(user_folder, filename):
                 corpus_content += line
                 logger.debug(f'{line} добавлено в corpus_content')
             else:
-                corpus_content_deleted = line.strip().split(';')[1] + '\n'
-                logger.debug(f'{line} добавлено в corpus_content_deleted')
+                parts = line.strip().split(';')
+                if len(parts) > 1:
+                    corpus_content_deleted = parts[1] + '\n'
+                    logger.debug(f'{line} добавлено в corpus_content_deleted')
 
         with open(os.path.join('home', user_folder, 'corpus.txt'), 'w', encoding='utf-8') as f:
             f.write(corpus_content)
