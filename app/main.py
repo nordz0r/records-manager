@@ -115,7 +115,8 @@ def delete_audio(user_folder, filename):
 
         # Возвращаем ответ 204 No Content в случае успеха
         return '', 204
-    except:
+    except Exception as e:
+        print('delete_audio:', str(e))
         # Возвращаем ответ 500 Internal Server Error в случае ошибки
         return '', 500
 
