@@ -92,8 +92,10 @@ def delete_audio(user_folder, filename):
         for line in lines:
             if line.strip() and not line.startswith(filename):
                 corpus_content += line
+                print(f'{line} add to corpus_content')
             else:
                 corpus_content_deleted = line.strip().split(';')[1] + '\n'
+                print(f'{line} add to corpus_content_deleted')
 
         # Записываем новую строку в corpus.txt без имени файла
         with open(os.path.join('home', user_folder, 'corpus.txt'), 'w', encoding='utf-8') as f:
